@@ -1,0 +1,5 @@
+.idea
+.database.php
+runtime/*
+nbproject
+server/ide-helper
