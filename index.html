@@ -1,91 +1,252 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-<meta charset="utf-8"/>
-<title>HTML5文字弹幕效果代码</title>
-<style type="text/css">
-*{
-	margin:0;
-	padding:0;
-	list-style: none;
-	border:0;
-}
-body{
-	background: #bcbcbc;
-}
-.main{
-	width: 600px;
-	height: 400px;
-	margin:0 auto;
-	position: relative;
-}
-.img {
-	position: absolute;
-	right: 0;
-	bottom:0;
-	
-	width: 600px;
-	height: 400px;
-	z-index:100; 
-}
-#canvas{
-position: absolute;
-	margin-top: 5%;
-	z-index:100; 
-	
-}
-</style>
-</head>
-<body>
+    <head>
+        <meta charset="utf-8"/>
+        <title>HTML5文字弹幕效果代码</title>
+        <style type="text/css">
+            *{
+                margin:0;
+                padding:0;
+                list-style: none;
+                border:0;
+            }
+            body{
+                background: #bcbcbc;
+            }
+            .main{
+                width: 600px;
+                height: 400px;
+               
+                margin-left: 25%;
+                position: relative;
+            }
+            .img {
+                position: absolute;
+                right: 0;
+                bottom:0;
 
-<div class="main">
-	<video class ="img" src="./5b4dd70a.mp4" controls="controls">
-	 
-	</video>
-	<canvas id="canvas">嗨帅哥您的浏览器不支持canvas赶紧去升级吧</canvas>
-	
+                width: 600px;
+                height: 400px;
+                z-index:100; 
+            }
+            #canvas{
+                position: absolute;
+                margin-top: 5%;
+                z-index:100; 
+
+            }
+ .box1{
+            width:400px;
+            border:1px solid #ddd;
+            padding:10px;
+            height:275px;
+            background-color: #fff;
+            margin:auto;
+            overflow: auto;
+        }
+        .phone{
+            width:100%;
+            overflow: hidden;
+            word-break: break-all;
+        }
+        .info{
+            padding:10px 0;
+            overflow: hidden;
+        }
+        .name{
+            clear: both;
+            color:#ddd;
+        }
+        .text{
+            clear:both;
+            padding:5px;
+            border-radius: 5px;
+        }
+        .left .name,.left .text{
+            float:left;
+        }
+        .right .name,.right .text{
+            float:right;
+        }
+        .left .text{
+            background-color: #89cff0;
+            color:#fff;
+        }
+        .right .text{
+            background-color: #71A32A;
+            color:#fff;
+        }
+        .sys{
+            clear: both;
+            text-align: center;
+            padding:30px 0 15px;
+        }
+        .sys p{
+            display: inline-block;
+            padding:0;
+            margin:0;
+            font-size:14px;
+            color:#fff;
+            background-color: #ccc;
+            padding:2px 10px;
+            border-radius: 2px;
+            text-align: center;
+        }
+
+        .box2{
+            width:400px;
+            margin:10px auto;
+            background-color:#fff;
+            padding:10px;
+            border:1px solid #ddd;
+        }
+        input{
+            font-size:14px;
+            padding:5px;
+            width:300px;
+            outline: none;
+            height:30px;
+        }
+        button{
+            width:80px;
+            font-size:14px;
+            height:40px;
+        }
+        .inputbox{
+            display: none;
+        }
+
+        .login{
+            text-align: center;
+            
+        }
+        .im-side{
+            float: right;
+            position: inline-block;
+            margin-top: -24%;
+            margin-right: 120px;
+        }
+        </style>
+        <link rel=stylesheet href="./css/common.css">
+        <link rel=stylesheet href="./css/jdc-side-panel.css">
+        <script src="js/jquery-1.10.2.js"></script>
+    </head>
+    <body>
+
+        <div class="main">
+            <video class ="img" src="./5b4dd70a.mp4" controls="controls">
+
+            </video>
+            <canvas id="canvas">嗨帅哥您的浏览器不支持canvas赶紧去升级吧</canvas>
+
+        </div>
+
+        <script type="text/javascript">
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext("2d");
+            var width = 600;
+            var height = 305;
+            var colorArr = ["yellow", "pink", "orange", "red", "green"];
+            var textArr = [
+                "A5源码不错我经常去，嘿嘿！",
+                "今晚有没有LOL的一块啊？",
+                "这种烟真心不好抽",
+                "星期天我想去爬长城",
+                "边喝酒边看电影",
+                "如果有任何疑问可以扫码联系我哦！"
+            ]
+            canvas.width = width;
+            canvas.height = height;
+            var image = new Image();
+
+            ctx.font = "20px Courier New";
+            var numArrL = [80, 100, 5, 300, 500, 430];//初始的X
+            var numArrT = [80, 100, 20, 300, 380, 210];//初始的Y
+            setInterval(function () {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.save();
+                for (var j = 0; j < textArr.length; j++) {
+                    numArrL[j] -= (j + 1) * 0.6;
+                    ctx.fillStyle = colorArr[j]
+                    ctx.fillText(textArr[j], numArrL[j], numArrT[j]);
+                }
+        //	for(var i=0;i<textArr.length;i++){
+        //		if(numArrL[i]<=-500){
+        //			numArrL[i]=canvas.width;
+        //		}
+        //	}
+                ctx.restore();
+            }, 30)
+
+        </script>
+        <div class="jdc-side" style="display: block;">
+
+            <div class="mod_hang_appeal">
+                <div class="mod_hang_appeal_btn"><i class="jdcfont"></i> <span>咨询反馈</span></div>
+                <div class="mod_hang_appeal_show">
+                    <ul>
+                        <li><a onclick="show()">
+                                <div class="icon_box"><i class="jdcfont"></i></div>
+                                <div class="text_box">
+                                    <h5>人工客服</h5>
+                                    <p>7*12 专业客服，服务咨询</p>
+                                </div>
+                            </a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="mod_hang_qrcode mod_hang_top"><a href="#" class="mod_hang_qrcode_btn"><i class="jdcfont"></i><span>返回顶部</span></a></div>
+            <div class="el-dialog__wrapper" style="display: none;">
+                <div class="el-dialog el-dialog--small" style="top: 15%;">
+                    <div class="el-dialog__header"><span class="el-dialog__title"></span>
+                        <div type="button" class="el-dialog__headerbtn"><i class="el-dialog__close el-icon el-icon-close"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="im-side">
+            <!--登录界面-->
+<div class="login">
+    <input id="name" type="text" placeholder="创建昵称，加入聊天室">
+    <button id="enter">进入</button>
 </div>
 
-<script type="text/javascript">
-	var canvas=document.getElementById('canvas');
-	var ctx=canvas.getContext("2d");
-	var width=600;
-	var height=305;
-	var colorArr=["yellow","pink","orange","red","green"];
-	var textArr=[
-		"A5源码不错我经常去，嘿嘿！",
-		"今晚有没有LOL的一块啊？",
-		"这种烟真心不好抽",
-		"星期天我想去爬长城",
-		"边喝酒边看电影",
-		"如果有任何疑问可以扫码联系我哦！"
-	]
-	canvas.width=width;
-	canvas.height=height;
-	var image=new Image();
 
-	ctx.font = "20px Courier New";
-	var numArrL=[80,100,5,300,500,430];//初始的X
-	var numArrT=[80,100,20,300,380,210];//初始的Y
-	setInterval(function(){
-	ctx.clearRect(0,0,canvas.width,canvas.height);
-	ctx.save();
-	for(var j=0;j<textArr.length;j++){
-		numArrL[j]-=(j+1)*0.6;
-		ctx.fillStyle = colorArr[j]
-		ctx.fillText(textArr[j],numArrL[j],numArrT[j]);
-	}
-//	for(var i=0;i<textArr.length;i++){
-//		if(numArrL[i]<=-500){
-//			numArrL[i]=canvas.width;
-//		}
-//	}
-	ctx.restore();
-	},30)
+<!--聊天界面-->
+<div class="inputbox">
+    <div class="box1">
+        <div class="phone">
 
-</script>
-<div style="text-align:center;">
-	
+        </div>
+    </div>
+    <div class="box2">
+        <input id="socket_text" type="text">
+        <button id="socket_send">发送</button>
+    </div>
 </div>
-</body>
+        </div>
+        <script>
+            var socket = new  WebSocket('ws://wechat.nannanqiaonan.cn:9501');
+            var user_info =  {
+                "nickname":"",
+                "content" : "",
+                "issys":0
+            };
+            function show()
+            {
+                window.open ('im2.html', 'newwindow', 'height=100, width=400, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
+            }
+            //登录、创建昵称
+            $('#enter').on('click',function(){
+                //进入聊天界面
+                $('.login').hide();
+                $('.inputbox').show();
+            });
+            function Wechat(){
+                
+            }
+        </script>
+    </body>
 </html>

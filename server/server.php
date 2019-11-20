@@ -20,8 +20,8 @@ class server
        ]);
        $this->server->on('open', [$this,'onOpen']);
        $this->server->on('message',[$this,'onMessage']);
-       $this->ws->on("task",[$this,"onTask"]);
-       $this->ws->on("finish",[$this,"onFinish"]);
+       $this->server->on("task",[$this,"onTask"]);
+       $this->server->on("finish",[$this,"onFinish"]);
        $this->server->on('close', [$this,'onClose']);
        $this->server->start();
     }
