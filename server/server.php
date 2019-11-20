@@ -37,7 +37,14 @@ class server
         $this->event = $data['event'];
         $this->events($data);
     }
-    
+    public function onTask($server,$task_id,$src_worker_id,$data)
+    {
+       
+    }
+    public function onFinish ($server,$task_id,$data)
+    {
+       
+    }
     public function onClose(swoole_websocket_server $ws,$fd)
     {
         
