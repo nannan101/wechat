@@ -100,7 +100,7 @@ class Connect{
     public function __construct($host = null , $port = null) 
     {
         $host = $host ? $host : self::HOST;
-        $port = $port ? $port : self::HOST;
+        $port = $port ? $port : self::PORT;
         $this->_serv = new Swoole\Server($host, $port);
         $this->_serv->set([
             'worker_num' => 4,
