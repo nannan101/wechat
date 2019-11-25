@@ -62,7 +62,7 @@ class BaseProcess
                     $flag = false;
                     $this->process_use[$pid] = 1;
                     
-                    $this->process_list[$pid]->wirte($index . 'Hello');
+                    $this->process_list[$pid]->write($index . 'Hello');
                     break;
                 }
             }
@@ -87,7 +87,7 @@ class BaseProcess
     
     public function task_rum($worker)
     {
-        var_dump($worker);
+       
         swoole_event_add($worker->pipe, function ($pipe) use ($worker){
            $data = $worker->read();
            var_dump($worker->pid . ":" .$data);
