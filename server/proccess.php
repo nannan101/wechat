@@ -40,7 +40,7 @@ class BaseProcess
         $this->current_num = $this->min_worker_num;
         for ($i = 0; $i < $this->current_num; $i++) {
             $process = new \Swoole\Process([$this,'task_rum'],FALSE,2);
-            $pid = $process->pid;
+            $pid = $process->start();
             $this->process_list[$pid] = $process;
             $this->process_use[$pid] = 0;
         }
@@ -61,8 +61,7 @@ class BaseProcess
                 if ($used == 0) {
                     $flag = false;
                     $this->process_use[$pid] = 1;
-                    var_dump($this->process_list[$pid]);
-                    exit();
+                    
                     $this->process_list[$pid]->wirte($index . 'Hello');
                     break;
                 }
