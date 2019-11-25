@@ -61,6 +61,8 @@ class BaseProcess
                 if ($used == 0) {
                     $flag = false;
                     $this->process_use[$pid] = 1;
+                    var_dump($this->process_list[$pid]);
+                    exit();
                     $this->process_list[$pid]->wirte($index . 'Hello');
                     break;
                 }
