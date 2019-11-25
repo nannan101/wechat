@@ -149,7 +149,8 @@ class Connect{
      */
     public function onReceive(\Swoole\Server $server,$fd,$reactorId, $data)
     {
-        echo 'get client message:'.$data;
+        echo 'get client message:'.$data .PHP_EOL;
+        $server->task($data);
     }
     
     /**
@@ -161,8 +162,8 @@ class Connect{
      */
     public function onTask(\Swoole\Server $server,$task_id,$src_worker_id,$data )
     {
-        echo 'task porccess message: '.$data . PHP_EOL;
-        
+        echo 'woker_proccess '.$src_worker_id.' task porccess message: '.$data . PHP_EOL;
+       
         return 'finished';
     }
     public function onFinish(\Swoole\Server $server, $task_id, $data)
