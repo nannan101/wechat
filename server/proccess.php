@@ -99,6 +99,7 @@ class BaseProcess
         });
     }
 }
+$dd = new BaseProcess();
 
 
 
