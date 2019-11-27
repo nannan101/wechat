@@ -12,6 +12,7 @@
  * 2.swoole_proccess管道通信
  * 3.event loop 事件循环
  * 
+ * 遗留问题有四个子进程没有被监听到
  * 
  * 
  */
@@ -67,7 +68,7 @@ class BaseProcess
                 }
             }
             if($flag && $this->current_num < $this->max_worker_num){
-                $process = new \Swoole\Process([$this,"task_rum"],FALSE,2);
+                $process = new \Swoole\Process([$this,'task_rum'],FALSE,2);
                 $pid = $process->start();
                 $this->process_list[$pid] = $process;
                 $this->process_use[$pid] = 1;
@@ -87,7 +88,7 @@ class BaseProcess
     
     public function task_rum($worker)
     {
-       
+        
         swoole_event_add($worker->pipe, function ($pipe) use ($worker){
            $data = $worker->read();
            var_dump($worker->pid . ":" .$data);
