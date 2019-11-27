@@ -88,3 +88,4 @@ class HttpServer
         $response->end($result);
     }
 }
+$http_server = new HttpServer();
